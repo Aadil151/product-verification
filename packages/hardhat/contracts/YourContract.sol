@@ -71,6 +71,17 @@ contract YourContract {
 		emit GreetingChange(msg.sender, _newGreeting, msg.value > 0, 0);
 	}
 
+	mapping(string => bool) public barcodes;
+
+    function registerProduct(string calldata barcode) external {
+        require(!barcodes[barcode], "Product with this barcode already registered");
+        barcodes[barcode] = true;
+    }
+
+    function verifyProduct(string calldata barcode) external view returns (bool) {
+        return barcodes[barcode];
+    }
+
 	/**
 	 * Function that allows the owner to withdraw all the Ether in the contract
 	 * The function can only be called by the owner of the contract as defined by the isOwner modifier

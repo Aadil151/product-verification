@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { NextPage } from "next";
-import { MagnifyingGlassIcon, SparklesIcon } from "@heroicons/react/24/outline";
+import { SparklesIcon } from "@heroicons/react/24/outline";
 import { MetaHeader } from "~~/components/MetaHeader";
 
 const Home: NextPage = () => {
@@ -15,25 +15,25 @@ const Home: NextPage = () => {
           </h1>
           <p className="text-center text-lg">
             Welcome to my product verification project. This project is a proof of concept for a product verification
-            system using blockchain technology. The project is built using Scaffold-eth-2
+            system using blockchain technology. The project is built using Scaffold-eth-2.
           </p>
         </div>
 
-        <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
-          <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
+        <div className=" justify-center items-center flex-grow bg-base-300 w-full mt-16 px-8 py-12">
+          <div className="flex justify-center items-center gap-12 flex-col ">
             <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
               <SparklesIcon className="h-8 w-8 fill-secondary" />
-              <p>To verify your product, use the </p>
+              <p>To verify your product, use the the box below to type in the barcode of your item </p>
             </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Explore your local transactions with the{" "}
-                <Link href="/blockexplorer" passHref className="link">
-                  Block Explorer
-                </Link>{" "}
-                tab.
-              </p>
+            <div className="flex justify-center flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
+              <input
+                type="text"
+                placeholder="Enter barcode"
+                className="text-black border-2 border-primary rounded-lg p-4"
+              />
+              <Link href="/verify">
+                <button className="bg-primary text-white p-4 mt-4 rounded-lg">Verify Product</button>
+              </Link>
             </div>
           </div>
         </div>
