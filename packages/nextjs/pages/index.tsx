@@ -1,9 +1,33 @@
-import Link from "next/link";
+import React, { useState } from "react";
 import type { NextPage } from "next";
 import { SparklesIcon } from "@heroicons/react/24/outline";
 import { MetaHeader } from "~~/components/MetaHeader";
+import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
+import { notification } from "~~/utils/scaffold-eth";
 
 const Home: NextPage = () => {
+  const [barcode, setBarcode] = useState("");
+
+  const { refetch } = useScaffoldContractRead({
+    contractName: "YourContract",
+    functionName: "verifyProduct",
+    args: [barcode],
+    enabled: false,
+    onSuccess: (data: unknown) => {
+      console.log("onsucess called", data);
+      if (data == true) {
+        notification.success("Product is registered");
+      } else {
+        notification.error("Product is not registered");
+      }
+    },
+  });
+
+  const handleVerify = () => {
+    console.log("handle verify called");
+    refetch();
+  };
+
   return (
     <>
       <MetaHeader />
@@ -15,7 +39,7 @@ const Home: NextPage = () => {
           </h1>
           <p className="text-center text-lg">
             Welcome to my product verification project. This project is a proof of concept for a product verification
-            system using blockchain technology. The project is built using Scaffold-eth-2.
+            system using blockchain technology.
           </p>
         </div>
 
@@ -30,10 +54,12 @@ const Home: NextPage = () => {
                 type="text"
                 placeholder="Enter barcode"
                 className="text-black border-2 border-primary rounded-lg p-4"
+                value={barcode}
+                onChange={e => setBarcode(e.target.value)}
               />
-              <Link href="/verify">
-                <button className="bg-primary text-white p-4 mt-4 rounded-lg">Verify Product</button>
-              </Link>
+              <button className="bg-primary text-white p-4 mt-4 rounded-lg" onClick={handleVerify}>
+                Verify Product
+              </button>
             </div>
           </div>
         </div>
