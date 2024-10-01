@@ -14,7 +14,6 @@ const Home: NextPage = () => {
     args: [barcode],
     enabled: false,
     onSuccess: (data: unknown) => {
-      console.log("onsucess called", data);
       if (data == true) {
         notification.success("Product is registered");
       } else {
@@ -24,7 +23,6 @@ const Home: NextPage = () => {
   });
 
   const handleVerify = () => {
-    console.log("handle verify called");
     refetch();
   };
 

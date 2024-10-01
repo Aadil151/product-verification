@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Bars3Icon, BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
-import { useOutsideClick } from "~~/hooks/scaffold-eth";
+import { useOutsideClick, useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 
 const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
   const router = useRouter();
@@ -34,11 +34,29 @@ export const Header = () => {
     useCallback(() => setIsDrawerOpen(false), []),
   );
 
+  const { data: isOwner } = useScaffoldContractRead({
+    contractName: "YourContract", // Replace with your contract name
+    functionName: "isOwne",
+  });
+
   const navLinks = (
     <>
       <li>
         <NavLink href="/">Verify a product</NavLink>
       </li>
+      {isOwner && (
+        <>
+          <li>
+            <NavLink href="/register">Register a product</NavLink>
+          </li>
+          <li>
+            <NavLink href="/debug">
+              <BugAntIcon className="h-4 w-4" />
+              Debug Contracts
+            </NavLink>
+          </li>
+        </>
+      )}
       <li>
         <NavLink href="/debug">
           <BugAntIcon className="h-4 w-4" />
