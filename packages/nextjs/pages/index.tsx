@@ -51,11 +51,11 @@ const Home: NextPage = () => {
               <input
                 type="text"
                 placeholder="Enter barcode"
-                className="text-black border-2 border-primary rounded-lg p-4"
+                className="input text-center input-secondary border-2 rounded-lg p-4"
                 value={barcode}
                 onChange={e => setBarcode(e.target.value)}
               />
-              <button className="bg-primary text-white p-4 mt-4 rounded-lg" onClick={handleVerify}>
+              <button className="btn p-4 mt-4 rounded-lg btn-wide" onClick={handleVerify}>
                 Verify Product
               </button>
             </div>
