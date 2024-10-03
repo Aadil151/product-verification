@@ -1,20 +1,9 @@
 import { useState } from "react";
-import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
 
 const Register = () => {
   const [barcode, setBarcode] = useState("");
-
-  const { refetch } = useScaffoldContractRead({
-    contractName: "YourContract",
-    functionName: "isOwne",
-    enabled: false,
-    onSuccess: (data: unknown) => {
-      if (data == true) {
-        register();
-      }
-    },
-  });
 
   const { write: register } = useScaffoldContractWrite({
     contractName: "YourContract",
@@ -26,7 +15,7 @@ const Register = () => {
   });
 
   const handleRegister = async () => {
-    refetch();
+    register();
   };
 
   return (
