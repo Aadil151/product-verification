@@ -20,10 +20,10 @@ const Register = () => {
 
   return (
     <div className="flex items-center flex-col flex-grow pt-10 gap-15">
-      <h1 className="text-center text-lg text-4xl font-bold px-5">Register Product Barcode</h1>
+      <h1 className="text-center text-lg text-5xl font-bold px-5">Register Product Barcode</h1>
       <div className="flex items-center flex-col flex-grow pt-15 px-5 gap-15">
         <p>Enter the product barcode below and click &quot;Register&quot; to register it.</p>
-        <p>Make sure you have enough eth to handle the transaction</p>
+        <p>Make sure you have enough sep to handle the transaction</p>
         <div className="flex justify-center flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl gap-10">
           <input
             className="input text-center input-bordered input-primary w-full max-w-xs rounded-lg p-4"
